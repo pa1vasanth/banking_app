@@ -43,6 +43,7 @@ public class AccountController {
 
     }
 
+
     @PutMapping("/{id}/withdraw")
     public ResponseEntity<AccountDto> withdraw(@PathVariable Long id,@RequestBody Map<String, Double> request){
         Double amount=request.get("Amount");
@@ -62,4 +63,14 @@ public class AccountController {
         accountService.deleteAccount(id);
         return ResponseEntity.ok("Account is deleted successfully");
     }
+
+
+    @GetMapping("/findByname/{name}")
+    public ResponseEntity<List<AccountDto>> getAccountByName(@PathVariable String name){
+        System.out.println(name);
+        List<AccountDto> accounts=accountService.findByACCName(name);
+
+        return ResponseEntity.ok(accounts);
+    }
+
 }
