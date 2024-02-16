@@ -92,6 +92,18 @@ public class AccountServiceImpl implements AccountService {
         double total = account.getBalance() - amount;
         account.setBalance(total);
         Account savedAccount=accountRepository.save(account);
+
+
+        Transaction transaction=new Transaction();
+        transaction.setId(id);
+        transaction.setAmount(-amount);
+        String uniqueId = UUID.randomUUID().toString();
+        transaction.setTrans_id(uniqueId);
+
+        Transaction savedTransaction=transactionRepository.save(transaction);
+
+        TransactionMapper.mapToTransactionDto(savedTransaction);
+
         return AccountMapper.mapToAccountDto(savedAccount);
 
     }

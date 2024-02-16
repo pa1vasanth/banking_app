@@ -8,12 +8,12 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
+
 @Table(name = "Transaction")
 public class Transaction{
 
     @Id
     private String trans_id;
-
 
     private Long id;
 

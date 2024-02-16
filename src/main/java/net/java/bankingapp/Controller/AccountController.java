@@ -24,6 +24,7 @@ public class AccountController {
 
     @PostMapping
     public ResponseEntity<AccountDto> addAccount(@RequestBody AccountDto accountDto){
+        accountDto.setBalance(0);
         return new ResponseEntity<>(accountService.createAccount(accountDto), HttpStatus.CREATED);
     }
 
